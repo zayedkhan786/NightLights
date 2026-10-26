@@ -84,9 +84,11 @@ It does not download or process data.
 ### B. Continue downloading
 
 NASA downloads require your own Earthdata token. Save it as plain text in
-`.earthdata_token.txt` in the project root. Never include this file in a shared
-folder, ZIP, Git commit or screenshot. You can use a file outside the project
-instead by passing `--token-file` with its path.
+`.earthdata_token.txt` in the project root. For this handover, the project owner
+has chosen to include the token file for the collaborator. It is not excluded
+by `.gitignore`; anyone with access to that file can use the token until it
+expires or is revoked. You can use a file outside the project instead by passing
+`--token-file` with its path.
 
 To extend the existing archives through yesterday:
 
@@ -291,7 +293,7 @@ with open_processed_history("VNP46A2") as ds:
 | `aoi/miami_smelter_building.geojson` | Building outline used to identify the two candidate pixels. |
 | `aoi/miami_smelter.geojson` | Saved site reference point for mapping. |
 | `tests/test_*.py` | Checks for the corresponding acquisition, storage, processing, validation, spatial, comparison, history and export modules. |
-| `.gitignore` | Excludes credentials, environments, caches and large local data/results from Git. It does not filter a manually copied folder. |
+| `.gitignore` | Excludes `.venv/` from Git. The token, data and outputs are not excluded. |
 | `archive/` | Superseded scripts/notebooks for historical reference; not required by the maintained workflow. |
 
 ## 6. Data, bands and interpretation
@@ -325,6 +327,12 @@ selection; do not replace the GeoJSON inside the current archive.
 
 ## 7. Share the project with a colleague
 
+The `.gitignore` file excludes `.venv/`. The project owner has chosen to share
+`.earthdata_token.txt` with the collaborator, so that token file is not ignored.
+Data and generated outputs are also not ignored. Review the staged file list
+before committing. If creating a ZIP or copying folders manually, exclude
+`.venv/` yourself; Git ignore rules do not filter those operations.
+
 For code review, share the root Python entry point, README, requirements,
 notebook, `nightlights/`, `aoi/` and `tests/`.
 
@@ -336,10 +344,12 @@ For a runnable copy of the current analysis, also share:
 - `outputs/processed_history/`, `outputs/site_review/` and `outputs/pixel_comparison_2016/` for the notebook review.
 - `outputs/comparable_csv/` for the final exports and column definitions, excluding any regenerated staging files or junction.
 
-Do not share `.earthdata_token.txt`, `.earthdata_token`, `.env`, `.venv/`,
-`__pycache__/` or temporary full-tile caches. The recipient creates their own
-environment and uses their own Earthdata credentials if downloading. Preserve
-complete Zarr directories and relative folder structure when copying.
+Include `.earthdata_token.txt` for the agreed handover. Exclude `.venv/`,
+`__pycache__/` and temporary full-tile caches from a manual copy. Do not include
+unrelated credentials from `.env` or other files. The recipient creates their
+own Python environment and can use the shared token while it remains valid,
+or supply their own token. Preserve complete Zarr directories and relative
+folder structure when copying.
 
 `archive/` can be omitted: it is not needed to download, process or view results.
 Early demonstrations, old output logs, the superseded November 2022 snapshot and
