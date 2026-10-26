@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "geometry": {"type": "Point", "coordinates": [-110.8565, 33.412655]},
+    "properties": {
+      "name": "Freeport-McMoRan Miami smelter",
+      "location": "Miami, Arizona, USA",
+      "tile": "h06v05",
+      "coordinate_source": "US EPA, Appendix C, Miami SO2 Modeling TSD, March 2017, Table 3-1",
+      "source_url": "https://gaftp.epa.gov/Air/aqmg/SCRAM/mchisrs/Appendix_C-Miami_SO2_Modeling_TSD-20170308.pdf",
+      "note": "Published facility reference point; not a surveyed centroid or facility boundary."
+    }
+  }]
+}
