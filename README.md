@@ -293,7 +293,7 @@ with open_processed_history("VNP46A2") as ds:
 | `aoi/miami_smelter_building.geojson` | Building outline used to identify the two candidate pixels. |
 | `aoi/miami_smelter.geojson` | Saved site reference point for mapping. |
 | `tests/test_*.py` | Checks for the corresponding acquisition, storage, processing, validation, spatial, comparison, history and export modules. |
-| `.gitignore` | Excludes `.venv/` from Git. The token, data and outputs are not excluded. |
+| `.gitignore` | Excludes `.venv/`, `data/`, `outputs/`, Python cache folders and compiled Python files. The shared token is not excluded. |
 | `archive/` | Superseded scripts/notebooks for historical reference; not required by the maintained workflow. |
 
 ## 6. Data, bands and interpretation
@@ -327,10 +327,11 @@ selection; do not replace the GeoJSON inside the current archive.
 
 ## 7. Share the project with a colleague
 
-The `.gitignore` file excludes `.venv/`. The project owner has chosen to share
+The `.gitignore` file excludes `.venv/`, `data/`, `outputs/`, Python cache folders
+and compiled Python files. The project owner has chosen to share
 `.earthdata_token.txt` with the collaborator, so that token file is not ignored.
-Data and generated outputs are also not ignored. Review the staged file list
-before committing. If creating a ZIP or copying folders manually, exclude
+Data and generated outputs must be shared separately when needed. Review the
+staged file list before committing. If creating a ZIP or copying folders manually, exclude
 `.venv/` yourself; Git ignore rules do not filter those operations.
 
 For code review, share the root Python entry point, README, requirements,
